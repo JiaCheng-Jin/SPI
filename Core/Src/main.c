@@ -24,7 +24,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "BMI088.hpp"
+#include "../Inc/BMI088.hpp"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/

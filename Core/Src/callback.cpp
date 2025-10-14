@@ -1,9 +1,9 @@
 //
 // Created by a2005 on 2025/10/12.
 //
-#include <tim.h>
+#include "../Inc/BMI088.hpp"
 #include <gpio.h>
-#include "BMI088.hpp"
+#include <tim.h>
 
 IMU imu;
 

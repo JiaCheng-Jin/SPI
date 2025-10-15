@@ -7,19 +7,17 @@
 
 IMU imu;
 
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
-  if (htim == &htim6) {
-    imu.acc_calculate();
-    imu.gyro_calculate();
-    
-  }
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim) {
+    if (htim == &htim6) {
+        imu.acc_calculate();
+        imu.gyro_calculate();
+        imu.update_orientation(1);
+    }
 }
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
-  if (GPIO_Pin == INT_Accel_Pin) {
-    
-  }
-  if (GPIO_Pin == INT_Gyro_Pin) {
-    
-  }
+    if (GPIO_Pin == INT_Accel_Pin) {
+    }
+    if (GPIO_Pin == INT_Gyro_Pin) {
+    }
 }

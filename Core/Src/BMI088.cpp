@@ -66,20 +66,22 @@ void bmi088_init() {
     // Soft Reset ACCEL
     BMI088_ACC_CS_LOW();
     BMI088_WriteReg(0x7E, 0xB6); // Write 0xB6 to ACC_SOFTRESET(0x7E)
-    HAL_Delay(1);
+    HAL_Delay(10);
     BMI088_ACC_CS_HIGH();
 
     // Soft Reset GYRO
     BMI088_GYRO_CS_LOW();
     BMI088_WriteReg(0x14, 0xB6); // Write 0xB6 to GYRO_SOFTRESET(0x14)
-    HAL_Delay(30);
+    HAL_Delay(100);
+    BMI088_WriteReg(0x10, 0x82);
+    HAL_Delay(10);
     BMI088_GYRO_CS_HIGH();
 
     // Switch ACCEL to Normal Mode
     BMI088_ACC_CS_LOW();
-    HAL_Delay(1);
+    HAL_Delay(10);
     BMI088_WriteReg(0x7D, 0x04); // Write 0x04 to ACC_PWR_CTRL(0x7D)
-    HAL_Delay(1);
+    HAL_Delay(10);
     BMI088_ACC_CS_HIGH();
 }
 
@@ -122,13 +124,14 @@ void IMU::gyro_calculate() {
 }
 
 void IMU::update_orientation(uint16_t ms) {
-    static float K = 0.4;
+    static float K = 0.8;
     float roll_a = atan2f(acc_y, acc_z);
     float pitch_a = -atan2f(acc_x, sqrtf(acc_y * acc_y + acc_z * acc_z));
-    float roll_g =
-        gyro_x + (sinf(pitch) * sinf(roll) / cosf(pitch)) * gyro_y + (cosf(roll) * sinf(pitch) * cosf(pitch)) * gyro_z;
-    float pitch_g = cosf(roll) * gyro_y - sinf(roll) * gyro_z;
-    float yaw_g = sinf(roll) / cosf(pitch) * gyro_y - cosf(roll) / cosf(pitch) * gyro_z;
+    float roll_g = gyro_x + (sinf(pitch * M_PI / 180) * sinf(roll * M_PI / 180) / cosf(pitch * M_PI / 180)) * gyro_y
+        + (cosf(roll * M_PI / 180) * sinf(pitch * M_PI / 180) * cosf(pitch * M_PI / 180)) * gyro_z;
+    float pitch_g = cosf(roll * M_PI / 180) * gyro_y - sinf(roll * M_PI / 180) * gyro_z;
+    float yaw_g = sinf(roll * M_PI / 180) / cosf(pitch * M_PI / 180) * gyro_y
+        - cosf(roll * M_PI / 180) / cosf(pitch * M_PI / 180) * gyro_z;
 
     roll += (roll_a - roll_g) * ms / 1000 * K;
     roll = fmodf(roll, 360.f);

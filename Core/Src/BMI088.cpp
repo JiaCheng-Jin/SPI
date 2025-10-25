@@ -5,6 +5,8 @@
 #include "BMI088.hpp"
 #include <cmath>
 
+#define PI 3.14159265358979
+
 void BMI088_WriteByte(uint8_t tx_data) {
     HAL_SPI_Transmit(&hspi1, &tx_data, 1, 1000);
     while (HAL_SPI_GetState(&hspi1) == HAL_SPI_STATE_BUSY_TX)
@@ -127,11 +129,11 @@ void IMU::update_orientation(uint16_t ms) {
     static float K = 0.8;
     float roll_a = atan2f(acc_y, acc_z);
     float pitch_a = -atan2f(acc_x, sqrtf(acc_y * acc_y + acc_z * acc_z));
-    float roll_g = gyro_x + (sinf(pitch * M_PI / 180) * sinf(roll * M_PI / 180) / cosf(pitch * M_PI / 180)) * gyro_y
-        + (cosf(roll * M_PI / 180) * sinf(pitch * M_PI / 180) * cosf(pitch * M_PI / 180)) * gyro_z;
-    float pitch_g = cosf(roll * M_PI / 180) * gyro_y - sinf(roll * M_PI / 180) * gyro_z;
-    float yaw_g = sinf(roll * M_PI / 180) / cosf(pitch * M_PI / 180) * gyro_y
-        - cosf(roll * M_PI / 180) / cosf(pitch * M_PI / 180) * gyro_z;
+    float roll_g = gyro_x + (sinf(pitch * PI / 180) * sinf(roll * PI / 180) / cosf(pitch * PI / 180)) * gyro_y
+        + (cosf(roll * PI / 180) * sinf(pitch * PI / 180) * cosf(pitch * PI / 180)) * gyro_z;
+    float pitch_g = cosf(roll * PI / 180) * gyro_y - sinf(roll * PI / 180) * gyro_z;
+    float yaw_g = sinf(roll * PI / 180) / cosf(pitch * PI / 180) * gyro_y
+        - cosf(roll * PI / 180) / cosf(pitch * PI / 180) * gyro_z;
 
     roll += (roll_a - roll_g) * ms / 1000 * K;
     roll = fmodf(roll, 360.f);

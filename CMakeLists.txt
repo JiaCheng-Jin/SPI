@@ -16,7 +16,7 @@ set_source_files_properties(Core/Src/main.c PROPERTIES LANGUAGE CXX)
 
 # Define the build type
 if (NOT CMAKE_BUILD_TYPE)
-    set(CMAKE_BUILD_TYPE "Debug")
+    set(CMAKE_BUILD_TYPE "Release")
 endif ()
 
 # Set the project name
@@ -36,6 +36,7 @@ enable_language(C ASM)
 add_executable(${CMAKE_PROJECT_NAME}
         Core/Src/BMI088.cpp
         Core/Src/callback.cpp
+        Core/Src/Controller.cpp
 )
 
 # Add STM32CubeMX generated sources

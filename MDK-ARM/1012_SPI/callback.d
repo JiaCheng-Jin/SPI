@@ -1,5 +1,6 @@
-1012_spi/callback.o: ..\Core\Src\callback.cpp ..\Core\Inc\tim.h \
-  ..\Core\Inc\main.h ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h \
+1012_spi/callback.o: ..\Core\Src\callback.cpp \
+  ..\Core\Src\..\Inc\BMI088.hpp ..\Core\Inc\SPI.h ..\Core\Inc\main.h \
+  ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h \
   ..\Core\Inc\stm32f4xx_hal_conf.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h \
@@ -32,4 +33,11 @@
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_spi.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_tim.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_tim_ex.h \
-  ..\Core\Inc\gpio.h ..\Core\Src\BMI088.hpp ..\Core\Inc\SPI.h
+  ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_uart.h \
+  ..\Core\Inc\gpio.h ..\Core\Inc\Controller.hpp ..\Core\Inc\usart.h \
+  D:\Keil_5\ARM\ARMCLANG\Bin\..\include\libcxx\cstring \
+  D:\Keil_5\ARM\ARMCLANG\Bin\..\include\libcxx\__assert \
+  D:\Keil_5\ARM\ARMCLANG\Bin\..\include\libcxx\__verbose_abort \
+  D:\Keil_5\ARM\ARMCLANG\Bin\..\include\libcxx\__availability \
+  D:\Keil_5\ARM\ARMCLANG\Bin\..\include\libcxx\string.h \
+  D:\Keil_5\ARM\ARMCLANG\Bin\..\include\string.h ..\Core\Inc\tim.h

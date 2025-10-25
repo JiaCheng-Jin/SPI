@@ -2,11 +2,13 @@
 "1012_spi\startup_stm32f407xx.o"
 "1012_spi\callback.o"
 "1012_spi\bmi088.o"
-"1012_spi\bmi088_1.o"
-"1012_spi\main_1.o"
+"1012_spi\controller.o"
+"1012_spi/main.o"
 "1012_spi\gpio.o"
+"1012_spi\dma.o"
 "1012_spi\spi.o"
 "1012_spi\tim.o"
+"1012_spi\usart.o"
 "1012_spi\stm32f4xx_it.o"
 "1012_spi\stm32f4xx_hal_msp.o"
 "1012_spi\stm32f4xx_hal_spi.o"
@@ -25,8 +27,9 @@
 "1012_spi\stm32f4xx_hal_exti.o"
 "1012_spi\stm32f4xx_hal_tim.o"
 "1012_spi\stm32f4xx_hal_tim_ex.o"
+"1012_spi\stm32f4xx_hal_uart.o"
 "1012_spi\system_stm32f4xx.o"
---strict --scatter "1012_SPI\1012_SPI.sct"
+--library_type=microlib --strict --scatter "1012_SPI\1012_SPI.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list "1012_SPI.map" -o 1012_SPI\1012_SPI.axf
